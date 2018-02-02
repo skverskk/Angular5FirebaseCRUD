@@ -1,31 +1,80 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+// Angular Firebase
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { FormsModule } from '@angular/forms';
+// import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase,
+  FirebaseListObservable, 
+  FirebaseObjectObservable }
+from 'angularfire2/database-deprecated';
+
+import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { EmployeesComponent } from './employees/employees.component';
-import { EmployeeComponent } from './employees/employee/employee.component';
-import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { ToastrModule } from 'ngx-toastr';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
+//Forms
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Services
+import { EmployeeService } from './services/employee.service';
+import { AuthService } from './services/auth.service';
+
+
+const appRoutes: Routes = [
+  { path: '' ,                 component: DashboardComponent },
+  { path: 'login',             component: LoginComponent },
+  { path: 'register',          component: RegisterComponent },
+  { path: 'add-employee',      component: AddEmployeeComponent},
+  { path: 'employee/:id',      component: EmployeeDetailsComponent},
+  { path: 'edit-employee/:id', component: EditEmployeeComponent}
+
+]
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeesComponent,
-    EmployeeComponent,
-    EmployeeListComponent
-   
+    DashboardComponent,
+    EmployeeDetailsComponent,
+    AddEmployeeComponent,
+    EditEmployeeComponent,
+    NavbarComponent,
+    SidebarComponent,
+    LoginComponent,
+    RegisterComponent,
+    SettingsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
-    FormsModule
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
+    
+    // FormsModule
   ],
-  providers: [],
+  providers: [AngularFireAuth, AngularFireDatabase, EmployeeService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-6">
+    <h2><i class="fa fa-users"></i> Employees</h2>
+  </div>
+  <div class="col-sm-6">
+
+
+  </div>
+</div>
+<table *ngIf="employees?.length>0;else noEmployees" class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>City</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{employee.$key}}</td>
+        <td>{{employee.firstName}} {{employee.lastName}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.city}}</td>
+        <td><a [routerLink]="['/employee/'+employee.$key]" href="" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Details</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noEmployees>
+  <hr>
+  <h5>There are No Employees in the Database</h5>
+</ng-template>

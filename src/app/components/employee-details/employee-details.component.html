@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-6">
+      <a routerLink="/" href="#" class="btn btn-link">
+        <i class="fa fa-arrow-circle-o-left"> Back to Dashboard</i>
+      </a>
+  </div>
+  <div class="col-md-6">
+    <div class="btn-group pull-right">
+      <a [routerLink]="['/edit-employee/'+id]" class="btn btn-secondary">Edit</a>
+      <button type="button" class="btn btn-danger" (click)="onDeleteClick()">Delete</button>
+    </div>
+  </div>
+</div>
+<hr>
+<div *ngIf="employee" class="card">
+  <h3 class="card-header">{{employee.firstName}} {{employee.lastName}}</h3>
+    <div class="card-block">
+      <div class="row">
+        <div class="col-md-8">
+          Employee Id: {{id}}
+        </div>
+        <div class="col-md-4">
+
+        </div>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">Contact: {{employee.email}}</li>
+        <li class="list-group-item">City: {{employee.city}}</li>
+
+        
+      
+      </ul>
+    </div>
+</div>
+  

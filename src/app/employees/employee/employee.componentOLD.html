@@ -1,0 +1,95 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm)" novalidate> 
+  <fieldSet formGroupName="name">
+    <div class = "form-group"
+      [ngClass] = "{
+        'has-success': fname.valid && (fname.dirty || fname.touched),
+        'has-danger': fname.invalid && (fname.dirty || fname.touched)
+      }">
+      <label>First Name</label>
+      <input type="text" 
+        class="form-control" 
+        formControlName = "fname"
+        placeholder="First Name">
+        <div class="form-control-feedback"
+          *ngIf = "fname.errors && (fname.dirty || fname.touched)">
+          <p *ngIf = "fname.errors.whitespace">First Name is required</p>          
+          <!-- <p *ngIf = "fname.errors.required">First Name is Required</p> -->
+          <p *ngIf = "fname.errors.minlength">First Name Must be 2 or more characters</p>
+
+          </div>
+    </div>
+    <div class = "form-group"
+    [ngClass] = "{
+      'has-success': lname.valid && (lname.dirty || lname.touched),
+      'has-danger': lname.invalid && (lname.dirty || lname.touched)
+    }">
+        <label>Last Name</label>
+        <input type="text" 
+          class="form-control" 
+          formControlName = "lname"
+          placeholder="Last Name">
+          <div class="form-control-feedback"
+            *ngIf = "lname.errors && (lname.dirty || lname.touched)">
+            <p *ngIf = "lname.errors.required">Last Name is Required</p>
+            <p *ngIf = "lname.errors.minlength">Last Name Must be 3 or more characters</p>          
+          </div>
+    </div>
+    </fieldSet>
+    <div class = "form-group"
+    [ngClass] = "{
+      'has-success': position.valid && (position.dirty || position.touched),
+      'has-danger': position.invalid && (position.dirty || position.touched)
+    }">
+        <label>Position</label>
+        <input type="text" 
+          class="form-control" 
+          formControlName = "position"
+          placeholder="Position">
+          <div class="form-control-feedback"
+            *ngIf = "position.errors && (position.dirty || position.touched)">
+            <p *ngIf = "position.errors.required">Position is Required</p>
+        </div>
+    </div>
+    <div class = "form-group"
+    [ngClass] = "{
+      'has-success': office.valid && (office.dirty || office.touched),
+      'has-danger':  office.invalid && (office.dirty || office.touched)
+    }">
+        <label>Office</label>
+        <input type="text" 
+          class="form-control" 
+          formControlName = "office"
+          placeholder="Office">
+         <div class="form-control-feedback"
+          *ngIf = "office.errors && (office.dirty || office.touched)">
+          <p *ngIf = "office.errors.required">Office is Required</p>
+      </div>
+    </div>
+    <div class = "form-group"
+    [ngClass] = "{
+      'has-success': salary.valid && (salary.dirty || salary.touched),
+      'has-danger':  salary.invalid && (salary.dirty || salary.touched)
+    }">
+        <label>Salary</label>
+        <input type="text" 
+          class="form-control" 
+          formControlName = "salary"
+          placeholder="Salary">
+          <div class="form-control-feedback"
+            *ngIf = "salary.errors && (salary.dirty || salary.touched)">
+            <p *ngIf = "salary.errors.required">Salary is Required</p>
+            <p *ngIf = "salary.errors.salaryValidator">Salary must be a positive numeric value</p>          
+
+      </div>
+    </div>
+ 
+      <div class="form-group">
+        <button class="btn btn-default" type="submit" [disabled]="!employeeForm.valid">
+          <i class="fa fa-floppy-o"></i>
+          Submit</button>
+        <button class="btn btn-default" type="button" (click)="resetForm(employeeForm)">
+            <i class="fa fa-repeat"></i>
+          Reset</button>
+
+      </div>
+</form>

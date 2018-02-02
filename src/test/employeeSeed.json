@@ -1,0 +1,16 @@
+{
+"employees": [
+    {
+        "firstName": "Kenneth",
+        "lastName": "Skversky",
+        "email": "ken.skversky@gmail.com",
+        "city": "Bensalem"
+    },
+    {
+        "firstName": "Mark",
+        "lastName": "Robinson",
+        "email": "mark.robinson@outlook.com",
+        "city": "Bensalem"
+    }
+]
+}

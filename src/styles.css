@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+.form-control:focus {
+    border: 2px solid #5cb85c;
+    /* border-color: #5cb85c;   */
+    box-shadow: 2px; 
+    -webkit-box-shadow: none;
+} 
+/* .has-error .form-control:focus{box-shadow: none; -webkit-box-shadow: none; } */
+
+ input.ng-invalid.ng-dirty {
+    border: 2px solid red; 
+} 
+
+.form-control-feedback {
+    font-size: 12px;
+    font-weight: 700;
+    color:  red;
+}
+
+button:hover, a.btn:hover {
+    cursor: pointer;
+}
+
+.card-block {
+    padding:15px;
+}
+
+label {
+    font-weight: 500;
+}

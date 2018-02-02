@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/" href="#" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"> Back to Dashboard</i>
+    </a>
+  </div>
+</div>
+<br />
+
+<div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+  <h3> Add New Employee</h3>
+  </div>
+  <div class="card-block">
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm)" novalidate>
+    <div class="form-group" [ngClass]="{
+          'has-success': firstName.valid && (firstName.dirty || firstName.touched),
+          'has-danger': firstName.invalid && (firstName.dirty || firstName.touched)
+        }">
+      <label>First Name:</label>
+      <input type="text" 
+      class="form-control" 
+      formControlName="firstName" 
+      placeholder="First Name (Required)">
+      <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+        <p *ngIf="firstName.errors.required">First Name is Required</p>
+        <p *ngIf="firstName.errors.minlength">First Name Must be 3 or more characters</p>
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{
+              'has-success': lastName.valid && (lastName.dirty || lastName.touched),
+              'has-danger': lastName.invalid && (lastName.dirty || lastName.touched)
+            }">
+      <label>Last Name:</label>
+      <input type="text" 
+      class="form-control" 
+      formControlName="lastName" 
+      placeholder="Last Name (Required)">
+      <div class="form-control-feedback" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+        <p *ngIf="lastName.errors.required">Last Name is Required</p>
+        <p *ngIf="lastName.errors.minlength">Last Name Must be 3 or more characters</p>
+      </div>
+    </div>
+    <!-- </fieldSet> -->
+    <div class="form-group" [ngClass]="{
+              'has-success': email.valid && (email.dirty || email.touched),
+              'has-danger': email.invalid && (email.dirty || email.touched)
+            }">
+      <label>Email:</label>
+      <input type="text" 
+      class="form-control" 
+      formControlName="email" 
+      placeholder="Email (Required)">
+      <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+        <p *ngIf="email.errors.required">Email is Required</p>
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="{
+              'has-success': city.valid && (city.dirty || city.touched),
+              'has-danger':  city.invalid && (city.dirty ||city.touched)
+            }">
+      <label>City:</label>
+      <input type="text" 
+      class="form-control" 
+      formControlName="city" 
+      placeholder="City (Required)">
+      <div class="form-control-feedback" *ngIf="city.errors && (city.dirty || city.touched)">
+        <p *ngIf="city.errors.required">City is Required</p>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <button class="btn btn-default" type="submit" [disabled]="!employeeForm.valid">
+        <i class="fa fa-floppy-o"></i>
+        Submit</button>
+      <button class="btn btn-default" type="button" (click)="resetForm(employeeForm)">
+        <i class="fa fa-repeat"></i>
+        Reset</button>
+ </div>  
+
+  </form>
+</div>
+</div>
+</div>
