@@ -48,7 +48,6 @@ export class EditEmployeeComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.employeeService.getEmployee(this.id).subscribe( employee => {
       this.employee = employee;
-    //  console.log(this.employee);
     // Populate Input Fields from DB
       (<FormGroup>this.employeeForm)
              .setValue(employee, { onlySelf: true });
@@ -93,7 +92,6 @@ export class EditEmployeeComponent implements OnInit {
    * @param employeeForm Update Employee
    */
   onSubmit( employeeForm : NgForm ) {
-    console.log("--> ",employeeForm.value);
     this.employeeService.updateEmployee(this.id, employeeForm.value);
     this.toastrService.success('Succeeded', 'Employee Update');
   //  this.employeeService.insertEmployee(employeeForm.value);

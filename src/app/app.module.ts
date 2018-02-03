@@ -35,15 +35,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Services
 import { EmployeeService } from './services/employee.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
+import { SettingsService } from './services/settings.service';
 
 
 const appRoutes: Routes = [
-  { path: '' ,                 component: DashboardComponent },
+  { path: '' ,                 component: DashboardComponent, canActivate:[AuthGuard] },
+  { path: 'dashboard' ,        component: DashboardComponent, canActivate:[AuthGuard] },
   { path: 'login',             component: LoginComponent },
   { path: 'register',          component: RegisterComponent },
-  { path: 'add-employee',      component: AddEmployeeComponent},
-  { path: 'employee/:id',      component: EmployeeDetailsComponent},
-  { path: 'edit-employee/:id', component: EditEmployeeComponent}
+  { path: 'add-employee',      component: AddEmployeeComponent, canActivate:[AuthGuard] },
+  { path: 'employee/:id',      component: EmployeeDetailsComponent, canActivate:[AuthGuard]},
+  { path: 'edit-employee/:id', component: EditEmployeeComponent, canActivate:[AuthGuard]},
+  { path: 'settings',          component: SettingsComponent, canActivate:[AuthGuard] },
+  { path: '**',                component: PageNotFoundComponent }
+
 
 ]
 
@@ -74,7 +80,13 @@ const appRoutes: Routes = [
     
     // FormsModule
   ],
-  providers: [AngularFireAuth, AngularFireDatabase, EmployeeService, AuthService],
+  providers: [AngularFireAuth, 
+              AngularFireDatabase, 
+              EmployeeService, 
+              AuthService,
+              AuthGuard,
+              SettingsService ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

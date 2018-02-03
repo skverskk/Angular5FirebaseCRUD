@@ -1,3 +1,36 @@
-<p>
-  register works!
-</p>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-block">
+          <img  class="mx-auto d-block" src="/assets/img/key.png" alt="">
+          <h1 class="text-center">Register</h1>
+          <br />
+          <form (submit)="onSubmit()">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" 
+              id="email"
+               class="form-control"
+               name="email"
+               [(ngModel)] ="email"
+               placeholder="Email"
+               required >
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" 
+                 class="form-control"
+                 name="password"
+                 id="password"
+                 [(ngModel)] ="password"
+                 placeholder="Password"
+                 required >
+              </div>
+              <br />
+              <input type="submit" class="btn btn-primary btn-block" value="Submit">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

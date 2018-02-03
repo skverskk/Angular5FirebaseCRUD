@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import {SettingsService } from '../../services/settings.service';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -16,7 +17,8 @@ export class NavbarComponent implements OnInit {
 
   constructor( private authService: AuthService,
                private toastrService: ToastrService,
-               private router: Router) { }
+               private router: Router,
+               private settingsService:SettingsService) { }
 
   ngOnInit() {
       this.authService.getAuth().subscribe( auth => {
@@ -25,9 +27,11 @@ export class NavbarComponent implements OnInit {
           this.loggedInUser = auth.email;
           } else {
             this.isLoggedIn = false;
-        }
-      })
+          }
+          this.showRegister = this.settingsService.getSettings().allowRegistration;
+      });
   }
+
   onLogoutClick() {
     this.authService.logout();
     this.toastrService.success( 'Success', 'You are now logged out');

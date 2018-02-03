@@ -95,7 +95,7 @@ export class AddEmployeeComponent implements OnInit {
   }
   /** Submit form to Firebase DB */
   onSubmit( employeeForm : NgForm ) {
-    console.log("--> ",employeeForm.value);
+    
     this.employeeService.addEmployee(employeeForm.value);
   //  this.employeeService.insertEmployee(employeeForm.value);
    this.resetForm();
